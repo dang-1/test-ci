@@ -1,0 +1,16 @@
+name: Test Docker
+on: [workflow_dispatch]
+jobs:
+  test-docker:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test docker version
+        run: docker version
+      - name: Print info
+        run: docker pull mcr.microsoft.com/dotnet/framework/sdk
+      - name: Print Images
+        run: docker images
+
