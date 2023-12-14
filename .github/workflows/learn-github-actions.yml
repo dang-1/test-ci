@@ -6,8 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Generate date-time tag
+        run: echo "IMAGE_TAG=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_ENV
+      - name: test send message
+        run: |
+          curl -X POST -H "$FS_HEADER" -d "{"msg_type": "text","content": {"text": "【R1 CI流程 # 结束。镜像如下：】\n
+            agent:${{ env.IMAGE_TAG }}\n
+            chat:${{ env.IMAGE_TAG }}\n  \"}}" "https://open.larksuite.com/open-apis/bot/v2/hook/01e4b513-8b58-400f-8672-bde34510acfb" &> /dev/null
+
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '14'
+      # - run: npm install -g bats
+      # - run: bats -v
