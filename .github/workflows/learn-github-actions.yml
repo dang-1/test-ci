@@ -10,11 +10,11 @@ jobs:
         run: echo "IMAGE_TAG=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_ENV
       - name: test send message
         run: |
-          echo curl -X POST -H "Content-Type: application/json" -d "{\"msg_type\": \"text\",\"content\": {\"text\": \"【R1 CI流程 # 结束。镜像如下：】\n
-            agent:${{ env.IMAGE_TAG }}\n
+          echo curl -X POST -H "Content-Type: application/json" -d "{\"msg_type\": \"text\",\"content\": {\"text\": \"【R1 CI流程 # 结束。镜像如下：】\n \
+            agent:${{ env.IMAGE_TAG }}\n \
             chat:${{ env.IMAGE_TAG }}\n  \"}}" "https://open.larksuite.com/open-apis/bot/v2/hook/01e4b513-8b58-400f-8672-bde34510acfb" &> /dev/null
-          curl -X POST -H "Content-Type: application/json" -d "{\"msg_type\": \"text\",\"content\": {\"text\": \"【R1 CI流程 # 结束。镜像如下：】\n
-            agent:${{ env.IMAGE_TAG }}\n
+          curl -X POST -H "Content-Type: application/json" -d "{\"msg_type\": \"text\",\"content\": {\"text\": \"【R1 CI流程 # 结束。镜像如下：】\n \
+            agent:${{ env.IMAGE_TAG }}\n \
             chat:${{ env.IMAGE_TAG }}\n  \"}}" "https://open.larksuite.com/open-apis/bot/v2/hook/01e4b513-8b58-400f-8672-bde34510acfb" &> /dev/null
 
       # - uses: actions/setup-node@v3
